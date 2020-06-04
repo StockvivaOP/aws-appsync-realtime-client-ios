@@ -65,6 +65,7 @@
 		259F9EB83B9F67D0413A6D4C /* Pods_AppSyncRealTimeClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81AFCBED5A97E398A4BD9D06 /* Pods_AppSyncRealTimeClient.framework */; };
 		450019BB151D701382536BD0 /* Pods_HostApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29CDD85F44666C7241232D29 /* Pods_HostApp.framework */; };
 		4A3EAC9B20D96D81CC3A7EF4 /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D112B03D6D38F84995D6FA /* Pods_HostApp_AppSyncRealTimeClientIntegrationTests.framework */; };
+		C46671182488DA8400C594BC /* SVAppRTConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46671172488DA8400C594BC /* SVAppRTConfiguration.swift */; };
 		DCFE701B5D1380E566694A48 /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E662A46AB2C93EE316F784C /* Pods_AppSyncRealTimeClient_AppSyncRealTimeClientTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +164,7 @@
 		93AA1C96F1B8D428CCC24CF0 /* Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests/Pods-AppSyncRealTimeClient-AppSyncRealTimeClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A843B4589131E0D2DB13ADC7 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B07A87133C24AA78AF59093C /* Pods-AppSyncRealTimeClient.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.debug.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.debug.xcconfig"; sourceTree = "<group>"; };
+		C46671172488DA8400C594BC /* SVAppRTConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVAppRTConfiguration.swift; sourceTree = "<group>"; };
 		C73EA796F50FB0196FDF4865 /* Pods-AppSyncRealTimeClient.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AppSyncRealTimeClient.release.xcconfig"; path = "Target Support Files/Pods-AppSyncRealTimeClient/Pods-AppSyncRealTimeClient.release.xcconfig"; sourceTree = "<group>"; };
 		E65A19C826699DA299A49284 /* Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; path = "Target Support Files/Pods-HostApp-AppSyncRealTimeClientIntegrationTests/Pods-HostApp-AppSyncRealTimeClientIntegrationTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -232,6 +234,7 @@
 		217F39912405D9D500F1A0B3 /* AppSyncRealTimeClient */ = {
 			isa = PBXGroup;
 			children = (
+				C46671142488DA1E00C594BC /* AppRTConfig */,
 				217F39B82406E98300F1A0B3 /* Connection */,
 				217F39A92406E98300F1A0B3 /* ConnectionProvider */,
 				217F39932405D9D500F1A0B3 /* Info.plist */,
@@ -431,6 +434,14 @@
 				21D38B9C240C540D00EC2A8D /* TestCommonConstants.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		C46671142488DA1E00C594BC /* AppRTConfig */ = {
+			isa = PBXGroup;
+			children = (
+				C46671172488DA8400C594BC /* SVAppRTConfiguration.swift */,
+			);
+			path = AppRTConfig;
 			sourceTree = "<group>";
 		};
 		CC47BA7DC6033B1626BAD959 /* Frameworks */ = {
@@ -767,6 +778,7 @@
 				217F39DB2406E98400F1A0B3 /* AppSyncSubscriptionConnection+DataHandler.swift in Sources */,
 				21D38B94240C4A2A00EC2A8D /* OIDCAuthProvider.swift in Sources */,
 				217F39DF2406E98400F1A0B3 /* SubscriptionItem.swift in Sources */,
+				C46671182488DA8400C594BC /* SVAppRTConfiguration.swift in Sources */,
 				217F39CF2406E98400F1A0B3 /* AppSyncMessage+Encodable.swift in Sources */,
 				217F39CD2406E98400F1A0B3 /* InterceptableConnection.swift in Sources */,
 				21D38B8E240A3C2300EC2A8D /* ConnectionProviderFactory.swift in Sources */,

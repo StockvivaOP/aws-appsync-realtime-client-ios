@@ -26,8 +26,9 @@ public class APIKeyAuthInterceptor: AuthInterceptor {
     /// - Parameter request: Signed request
     public func interceptConnection(_ request: AppSyncConnectionRequest,
                              for endpoint: URL) -> AppSyncConnectionRequest {
-        let host = endpoint.host!
-        let authHeader = APIKeyAuthenticationHeader(apiKey: apiKey, host: host)
+        let host = SVAppRTConfiguration.shared.systemInfoRequestDelegate?.getCustomHostOfAuthenticationHeader() ?? endpoint.host!
+        let _apiKey = SVAppRTConfiguration.shared.systemInfoRequestDelegate?.getCustomAPIKeyOfAuthenticationHeader() ?? apiKey
+        let authHeader = APIKeyAuthenticationHeader(apiKey: _apiKey, host: host)
         let base64Auth = AppSyncJSONHelper.base64AuthenticationBlob(authHeader)
 
         let payloadData = SubscriptionConstants.emptyPayload.data(using: .utf8)
@@ -47,10 +48,11 @@ public class APIKeyAuthInterceptor: AuthInterceptor {
     }
 
     public func interceptMessage(_ message: AppSyncMessage, for endpoint: URL) -> AppSyncMessage {
-        let host = endpoint.host!
+        let host = SVAppRTConfiguration.shared.systemInfoRequestDelegate?.getCustomHostOfAuthenticationHeader() ?? endpoint.host!
+        let _apiKey = SVAppRTConfiguration.shared.systemInfoRequestDelegate?.getCustomAPIKeyOfAuthenticationHeader() ?? apiKey
         switch message.messageType {
         case .subscribe:
-            let authHeader = APIKeyAuthenticationHeader(apiKey: apiKey, host: host)
+            let authHeader = APIKeyAuthenticationHeader(apiKey: _apiKey, host: host)
             var payload = message.payload ?? AppSyncMessage.Payload()
             payload.authHeader = authHeader
 
