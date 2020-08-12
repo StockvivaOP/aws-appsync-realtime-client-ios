@@ -1,22 +1,21 @@
 //
-//  SVAppRTConfiguration.swift
-//  AppSyncRealTimeClient
+// Copyright 2018-2020 Amazon.com,
+// Inc. or its affiliates. All Rights Reserved.
 //
-//  Created by OldPig Chu on 4/6/2020.
-//  Copyright © 2020 amazonaws. All rights reserved.
+// SPDX-License-Identifier: Apache-2.0
 //
 
 import Foundation
 
 public struct SVAppRTConfiguration {
-    
-    public static var shared:SVAppRTConfiguration = SVAppRTConfiguration()
-    
-    public var systemInfoRequestDelegate:SVAppRTSystemInfoRequestDelegate? = nil
+
+    public static var shared: SVAppRTConfiguration = SVAppRTConfiguration()
+
+    public var systemInfoRequestDelegate: SVAppRTSystemInfoRequestDelegate? = nil
 }
 
 //tag: stockviva - start
-public protocol SVAppRTSystemInfoRequestDelegate: class{
+public protocol SVAppRTSystemInfoRequestDelegate: AnyObject {
     func getCustomHostOfAuthenticationHeader() -> String?
     func getCustomAPIKeyOfAuthenticationHeader() -> String?
 }

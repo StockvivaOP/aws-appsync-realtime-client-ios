@@ -1,5 +1,34 @@
 # AppSync RealTime Client for iOS
 
+## 1.4.0
+
+### Bug fixes
+
+- Fix stale connection handling upon resume from background ([#25](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/25)). Also see issues:
+  - https://github.com/aws-amplify/amplify-ios/issues/677
+  - https://github.com/aws-amplify/aws-appsync-realtime-client-ios/issues/24
+  - https://github.com/awslabs/aws-mobile-appsync-sdk-ios/issues/393
+  - https://github.com/awslabs/aws-mobile-appsync-sdk-ios/issues/396
+  - https://github.com/awslabs/aws-mobile-appsync-sdk-ios/issues/403
+
+### Misc
+
+- AppSync RealTime Client for iOS is now released under the Apache 2.0 license. See [LICENSE](./LICENSE) for details. ([#26](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/issues/26))
+
+## 1.3.0
+
+### Misc
+
+- Make SubscriptionItem.init public. See [PR #19](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/19)
+- Update CocoaPods JSON gem dependency. See [PR #20](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/20)
+- Fix integration tests instructions and add test schema to support files. See [PR #21](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/21)
+
+## 1.2.0
+
+### Misc
+
+- Upgrade Starscream to ~> 3.1.0. See [PR #17](https://github.com/aws-amplify/aws-appsync-realtime-client-ios/pull/17)
+
 ## 1.1.6
 
 ### Improvements
