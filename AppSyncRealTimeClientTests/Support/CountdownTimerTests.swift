@@ -67,22 +67,22 @@ class CountdownTimerTests: XCTestCase {
     /// - 300: Ensure timer has fired
     func testTimerFiresOnSchedule() {
         var timer: CountdownTimer!
-        var timerHasFired = false
+        let timerHasFired = AtomicValue(initialValue: false)
 
         let timerShouldHaveFired = expectation(description: "the timer should have fired by now")
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(0)) {
             timer = CountdownTimer(interval: 0.200) {
-                timerHasFired = true
+                timerHasFired.set(true)
             }
         }
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(100)) {
-            XCTAssertFalse(timerHasFired, "The timer should not have fired yet")
+            XCTAssertFalse(timerHasFired.get(), "The timer should not have fired yet")
         }
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(300)) {
-            XCTAssert(timerHasFired, "The timer should have fired by now")
+            XCTAssert(timerHasFired.get(), "The timer should have fired by now")
             timerShouldHaveFired.fulfill()
         }
 
@@ -108,16 +108,16 @@ class CountdownTimerTests: XCTestCase {
     /// - 600: Ensure timer has yet fired
     func testTimerResets() {
         var timer: CountdownTimer!
-        var timerHasFired = false
+        let timerHasFired = AtomicValue(initialValue: false)
 
         let timerShouldHaveFired = expectation(description: "the timer should have fired by now")
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(0)) {
-            timer = CountdownTimer(interval: 0.300) { timerHasFired = true }
+            timer = CountdownTimer(interval: 0.300) { timerHasFired.set(true) }
         }
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(100)) {
-            XCTAssertFalse(timerHasFired, "The timer should not have fired yet")
+            XCTAssertFalse(timerHasFired.get(), "The timer should not have fired yet")
         }
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(200)) {
@@ -125,17 +125,27 @@ class CountdownTimerTests: XCTestCase {
         }
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(400)) {
-            XCTAssertFalse(timerHasFired, "The timer should not have fired yet")
+            XCTAssertFalse(timerHasFired.get(), "The timer should not have fired yet")
         }
 
         DispatchQueue.global().asyncAfter(deadline: .now() + .milliseconds(600)) {
-            XCTAssert(timerHasFired, "The timer should have fired by now")
+            XCTAssert(timerHasFired.get(), "The timer should have fired by now")
             timerShouldHaveFired.fulfill()
         }
 
         waitForExpectations(timeout: 1.0)
 
         timer.invalidate()
+    }
+
+    /// Test that concurrent operations on the timer do not result in data races
+    func testConcurrency() {
+        let timerShouldHaveFired = expectation(description: "the timer should have fired by now")
+        let timer = CountdownTimer(interval: 0.1) { timerShouldHaveFired.fulfill() }
+        DispatchQueue.concurrentPerform(iterations: 10_000) { _ in
+            timer.resetCountdown()
+        }
+        waitForExpectations(timeout: 1.0)
     }
 
 }
